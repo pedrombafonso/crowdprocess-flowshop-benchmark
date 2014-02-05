@@ -1,0 +1,94 @@
+<html>
+<head>
+  <title></title>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.1/d3.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/rickshaw/1.4.6/rickshaw.js"></script>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/rickshaw/1.4.6/rickshaw.css" rel="stylesheet" type="text/css">
+  <script src="build/webapp.js"></script>
+</head>
+<body>
+<div id="minimum"></div>
+<style>
+
+#chart svg {
+  height: 400px;
+}
+
+</style>
+
+
+<div id="chart"></div>
+
+<script>
+  var tv = 50;
+  var scale = d3.scale.linear().domain([3000, 4000]).nice();
+
+  // instantiate our graph!
+  var graph;
+
+  // add some data every so often
+  var i = 0;
+  var iv = setInterval( function() {
+    if (minimum.innerText){
+      if (i == 0){
+        graph = new Rickshaw.Graph( {
+          element: document.getElementById("chart"),
+          width: 900,
+          height: 500,
+          renderer: 'line',
+          interpolation: 'basis',
+          min: 'auto',
+          max: '3300',
+          padding: {
+            top: 0.3,
+            bottom:0.3
+          },
+          series: [
+            {
+              name: "CrowdProcess",
+              color: "#c05020",
+              data: [{ x: new Date().getTime(), y: Number(minimum.innerText) }]
+            }
+          ]
+        } );
+
+        var hoverDetail = new Rickshaw.Graph.HoverDetail( {
+          graph: graph
+        } );
+
+        var axes = new Rickshaw.Graph.Axis.Time( 
+          { 
+            graph: graph,
+            timeFixture: new Rickshaw.Fixtures.Time.Local()
+          } );
+
+        var y_axis = new Rickshaw.Graph.Axis.Y( {
+              graph: graph,
+              // orientation: 'left',
+              // tickFormat: Rickshaw.Fixtures.Number.formatKMBT,
+              element: document.getElementById('y_axis'),
+              scale: scale
+        } );
+
+
+        console.log(minimum.innerText)
+      } else {
+        var data = { x: new Date().getTime(), y: Number(minimum.innerText) };
+        graph.series[0].data.push(data);
+      }
+      graph.render();
+      i++
+      // var data = { CrowdProcess: Number(minimum.innerText) };
+      // graph.series.addData(data);
+
+      
+    }
+    
+
+
+  }, tv );
+</script>
+
+</body>
+</html>

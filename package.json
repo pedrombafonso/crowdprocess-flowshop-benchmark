@@ -1,0 +1,32 @@
+{
+  "name": "crowdprocess-flowshop-benchmark",
+  "title": "Flowshop scheduling benchmark using Genetic Algorithms in CrowdProcess",
+  "description": "Let's find how faster can we get in CrowdProcess.",
+  "version": "0.0.1",
+  "author": {
+    "name": "Pedro Baptista Afonso",
+    "email": "mail@pedroafonso.net"
+  },
+  "main": "src/program.js",
+  "engines": {
+    "node": {
+      "node": ">=0.10.x"
+    }
+  },
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-string-replace": "~0.2.4",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-contrib-jshint": "~0.4.3",
+    "grunt-browserify": "~0.2.3",
+    "grunt-contrib-watch": "~0.3.1",
+    "browserify": "~3.24.11",
+    "brfs": "0.0.9"
+  },
+  "dependencies": {
+    "crowdprocess": "~0.5.9"
+  }
+}

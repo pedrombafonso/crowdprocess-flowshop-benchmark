@@ -33,6 +33,10 @@ module.exports = function(grunt) {
       build: {
         src: 'build/program.js',
         dest: 'build/program.min.js'
+      },
+      chart: {
+        src: 'src/chart.js',
+        dest: 'build/chart.min.js'
       }
     },
     watch: {
@@ -63,7 +67,8 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['jshint',
                                  'browserify:production',
                                  'browserify:webapp',
-                                 'uglify']);
+                                 'uglify:build',
+                                 'uglify:chart']);
 
   grunt.registerTask('debug', ['jshint',
                                'browserify:debug']);

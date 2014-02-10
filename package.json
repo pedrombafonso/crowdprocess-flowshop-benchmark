@@ -8,13 +8,11 @@
     "email": "mail@pedroafonso.net"
   },
   "main": "src/program.js",
-  "engines": {
-    "node": {
-      "node": ">=0.10.x"
-    }
+  "bin": {
+    "crowdprocess-flowshop-benchmark": "index.js"
   },
   "scripts": {
-    "test": "tape test/*.js"
+    "test": ""
   },
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -27,6 +25,17 @@
     "brfs": "0.0.9"
   },
   "dependencies": {
-    "crowdprocess": "~0.5.9"
+    "crowdprocess": "~0.5.9",
+    "express": "~3.4.8",
+    "cors": "~2.1.1",
+    "socket.io": "~0.9.16"
+  },
+  "ploy": {
+    "excludes": [
+      "outputs"
+    ],
+    "tags": [
+      "famiglia"
+    ]
   }
 }

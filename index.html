@@ -2,22 +2,42 @@
 <head>
   <title>CrowdProcess // Flowshop scheduling benchmark using Genetic Algorithms</title>
   <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+  <!-- Chart libraries -->
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.1/d3.min.js"></script>
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/rickshaw/1.4.6/rickshaw.js"></script>
   <link href="//cdnjs.cloudflare.com/ajax/libs/rickshaw/1.4.6/rickshaw.css" rel="stylesheet" type="text/css">
-  <script type="text/javascript" src="build/webapp.js"></script>
-  <script type="text/javascript" src="build/chart.js"></script>
+  <!-- Flowshop from Duda -->
+<!--   <link href="client/head/index.css" rel="stylesheet" type="text/css" />
+  <link href="client/head/reset.css" rel="stylesheet" type="text/css" /> -->
+  <script src="client/head/table.js" type="text/javascript"></script>
+  <script src="core/flowshop_population.js" type="text/javascript"></script>
+  <script src="core/flowshop.js" type="text/javascript"></script>
+  <script src="client/head/flowshop.js" type="text/javascript"></script>
+  <script src="socket.io/socket.io.js"></script>
+  <script>
+    socket = io.connect(location.protocol+location.host);
+    socket.on('news', function (data) {
+      console.log(data);
+    });
+  </script>
 </head>
-<body>
-<div id="minimum"></div>
 
-<style>
-#chart svg {
-  height: 400px;
-}
-</style>
+<body id="body">
+<div id="content">
+  <div id="minimum-cp"></div>
+  <div id="minimum-serial"></div>
 
-<div id="chart"></div>
+  <style>
+  #chart svg {
+    height: 400px;
+  }
+  </style>
+  <button id="start-button" type="button" class="btn btn-ttc">Start</button>
+  <div id="chart"></div>
 
+  <script type="text/javascript" src="build/webapp.js"></script>
+  <script type="text/javascript" src="build/chart.min.js"></script>
 </body>
 </html>

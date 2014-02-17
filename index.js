@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var app = require('http').createServer(handler),
   io = require('socket.io').listen(app),
   fs = require('fs'),
@@ -28,9 +30,15 @@ var bestResults = {
 };
 
 function handler (req, res) {
-  var filePath = '.' + req.url;
-  if (filePath == './')
-    filePath = './index.html';
+  var filePath = req.url;
+  console.log('URL: ', req.url);
+  console.log('__dirname: ', __dirname);
+  if (filePath == '/') {
+    filePath = __dirname + filePath + 'index.html';
+  } else {
+    filePath = __dirname + filePath;
+  }
+    
 
   var extname = path.extname(filePath);
   var contentType = 'text/html';
@@ -43,8 +51,10 @@ function handler (req, res) {
       break;
   }
 
+  console.log('files in folder:', fs.readdirSync('.'));
 
-  path.exists(filePath, function(exists) {
+  fs.exists(filePath, function(exists) {
+    console.log(filePath, exists);
     if (exists) {
       fs.readFile(filePath, function(error, content) {
         if (error) {
